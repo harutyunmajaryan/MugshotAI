@@ -16,6 +16,21 @@ CREATE TABLE `SUSPECT_IMAGE_TABLE`(
    `image_path` VARCHAR(255) NOT NULL
 );
 
+
+DELIMITER $$
+CREATE TRIGGER `check_age`
+BEFORE INSERT ON `SUSPECTS`
+FOR EACH ROW
+BEGIN
+   IF NEW.age < 0 THEN
+     SIGNAL SQLSTATE '45000'
+     SET MESSAGE_TEXT = "Age cannot be negative";
+   END IF;
+END $$
+DELIMITER ;
+   
+
+
 INSERT INTO `SUSPECTS` (`suspect_name`, `suspect_surname`, `age`) VALUES
 ('Eva', 'Smith', 30),
 ('Andrey', 'Bizenko', 34),
