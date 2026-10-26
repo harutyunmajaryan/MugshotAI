@@ -43,53 +43,43 @@ def AI_scanner(witness_provided_data):
                        current_set[feature_name] = 0
 
                current_set["image_path"] = image_path 
-               array_of_sets.append(current_set)   
+               array_of_sets.append(current_set)                
+               print(current_set)  
+
+               #array_of_sets = [{feature_name1 : 1, feature_name2 : 0, image_path: "...."}, {.......}]
 
             except FileNotFoundError:
                 print("This image does not exist in our database")        
 
+    print("\n" * 2)
+    suspect_vs_matches = {}
 
-
-
-    set_of_sets_vs_matches = {}
-    set_of_images = {}
-             
-    for index, suspect_set in enumerate(array_of_sets, start=1):
-        match_count = 0
+    for suspect_set in array_of_sets:
+        match_score = 0
         for feature_truth in suspect_set:
-            if feature_truth == "image_path":
-                continue
             if suspect_set[feature_truth] == 1:
-                 match_count += 1
-                 
-        set_name = f"set_number_{index}"
-        set_of_sets_vs_matches[set_name] = match_count 
-        set_of_images[set_name] = suspect_set["image_path"]
-        
+                match_score += 1
+            elif suspect_set[feature_truth] == 0:
+                match_score += 0    
+            elif feature_truth == "image_path":
+                continue  
 
-             
-    print(set_of_sets_vs_matches)    
-    print("\n")  
+        suspect_vs_matches[suspect_set["image_path"]] = match_score
 
-    max_val = 0
-    
-    for set_number in set_of_sets_vs_matches:
-        set_match_number = set_of_sets_vs_matches[set_number]
-        if set_match_number > max_val:
-            max_val = set_match_number
+    print(suspect_vs_matches)     
 
 
-    array_of_priority_options = []
-    array_of_priority_images = []
+    priority_images = []
+    return_threshold = 2
 
-    for set_number in set_of_sets_vs_matches:
-        set_match_number = set_of_sets_vs_matches[set_number]     
-        if set_match_number == max_val:
-            array_of_priority_options.append(set_number)
-            array_of_priority_images.append(set_of_images[set_number])
+    for image_path_for_match in suspect_vs_matches:
+        if suspect_vs_matches[image_path_for_match] >= return_threshold:     #suspect_vs_matches[image_path_for_match] is match_score for each image > threshold
+            priority_images.append(image_path_for_match)                    #priortiy_images is the array that contains all the image paths which exceeded the threshold
+
+    print(priority_images)
+    return priority_images
 
             
 
-    print("\n")
-    print("Highest Match: ")
-    return array_of_priority_images
+
+         
