@@ -92,12 +92,4 @@ def AI_scanner(witness_provided_data):
 
     print("\n")
     print("Highest Match: ")
-    print(array_of_priority_options)
-    print(array_of_priority_images)
-
-         
-    
-
-
-witness_data = getInfo()
-print(AI_scanner(witness_data))
+    return array_of_priority_images
