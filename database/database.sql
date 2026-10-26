@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS suspect_db;
-CREATE DATABASE suspect_db;
-USE suspect_db;
+CREATE DATABASE IF NOT EXISTS JJ;
+USE JJ;
+
 
 CREATE TABLE `SUSPECTS`(
    `id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,7 +43,6 @@ INSERT INTO `SUSPECT_IMAGE_TABLE` (`suspect_name`, `suspect_surname`, `image_pat
 ('Xao', 'Chi', 'images/XaoChi.png'),
 ('Omar', 'Mohammed', 'images/OmarMohammed.png');
 
-SHOW TABLES;
 
 SELECT
 `SUSPECTS`.`id`,
