@@ -1,4 +1,3 @@
-
 def getInfo():
     print("Fill the suspect's details below:\n")
 
@@ -16,92 +15,73 @@ def getInfo():
         if gender_sureness >= threshold:
             map["Gender"] = {"value": "female", "sureness": gender_sureness}
 
-    # 2. Suspect Hair Availability
+    # 2. Suspect Hair (length and colour are asked separately)
     suspect_hair = input("Does your person have hair? (yes/no/idk): ").strip().lower()
     if suspect_hair == "yes":
         suspect_hair_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
         if suspect_hair_sureness >= threshold:
-            suspect_hair_colour = input("What colour is the hair? (idk/colour): ").strip().lower()
-            if suspect_hair_colour != "idk":
-                    suspect_hair_colour_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
-                    if suspect_hair_colour_sureness >= threshold:
-                        suspect_hair_length = str(input("How long is the hair? (short/medium/long/idk): "))
-                        if suspect_hair_length != "idk":
-                          map["Hair color"] = {"value": suspect_hair_length + " " + suspect_hair_colour + " " + "hair", "sureness": suspect_hair_colour_sureness}
-                        elif suspect_hair_length == "idk":
-                          map["Hair color"] = {"value": suspect_hair_colour + " " + "hair", "sureness": suspect_hair_colour_sureness}
-                    elif suspect_hair_colour_sureness < threshold:
-                          map["Hair color"] = {"value": "hair", "sureness": suspect_hair_colour_sureness}
 
+            # 2a. Hair length
+            suspect_hair_length = str(input("How long is the hair? (short/medium/long/idk): ")).strip().lower()
+            if suspect_hair_length != "idk":
+                hair_length_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+                if hair_length_sureness >= threshold:
+                    map["Hair length"] = {"value": suspect_hair_length + " hair", "sureness": hair_length_sureness}
+
+            # 2b. Hair colour
+            suspect_hair_colour = str(input("What colour is the hair? (black/brown/blonde/red/gray/idk): ")).strip().lower()
+            if suspect_hair_colour != "idk":
+                hair_colour_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+                if hair_colour_sureness >= threshold:
+                    map["Hair color"] = {"value": suspect_hair_colour + " hair", "sureness": hair_colour_sureness}
 
     elif suspect_hair == "no":
         hair_sureness = int(input("How sure are you that they have no hair/are bald? (0-100): "))
         if hair_sureness >= threshold:
-            map["Hair"] = {"value": "bald", "sureness": hair_sureness}
+            map["Hair length"] = {"value": "bald", "sureness": hair_sureness}
 
-    # 3. Suspect Hair Color
-    
-    # 4. Suspect Eye Color (Fixed the variable bug here)
-    suspect_eye_colour = input("What colour of eyes does your person have? (color/idk): ").strip().lower()
-    if suspect_eye_colour != "idk":
-        suspect_eye_colour_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
-        if suspect_eye_colour_sureness >= threshold:
-            suspect_eye_shape = str(input("What shape do the eyes have?(round/narrow/wide/idk): ")).strip().lower()
-            if suspect_eye_shape == "idk":
-              map["Eye color"] = {"value": suspect_eye_colour + " " + "eyes", "sureness": suspect_eye_colour_sureness}
-            else:
-                suspect_eye_shape_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
-                if suspect_eye_colour_sureness >= threshold:
-                    map["Eye color"] = {"value": suspect_eye_shape + " " + suspect_eye_colour + " " + "eyes", "sureness": suspect_eye_colour_sureness}
-                else:
-                    map["Eye color"] = {"value": suspect_eye_colour + " " + "eyes", "sureness": suspect_eye_colour_sureness}
-        
-
- 
-    # 5. Suspect Facial Hair
-    suspect_facial_hair = input("Does your person have a beard? (yes/no/idk): ").strip().lower()
+    # 3. Suspect Facial Hair (type, colour and length are asked separately)
+    suspect_facial_hair = input("Does your person have facial hair? (yes/no/idk): ").strip().lower()
     if suspect_facial_hair == "yes":
         suspect_facial_hair_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
         if suspect_facial_hair_sureness >= threshold:
-            suspect_facial_hair_colour = str(input("What colour of facial hair does your person have?(color/ idk): ")).strip().lower()
-            if suspect_facial_hair_colour == "idk":   
-               map["Beard"] = {"value": "Beard", "sureness": suspect_facial_hair_sureness}
-            else:
-                suspect_facial_hair_colour_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
-                if suspect_facial_hair_colour_sureness >= threshold:
-                    suspect_facial_hair_length = str(input("How long was the beard: (short, medium, long / idk)?: ")).strip().lower()
-                    if suspect_facial_hair_length == "idk":
-                        map["Beard"] = {"value": suspect_facial_hair_colour + " " + "beard", "sureness": suspect_facial_hair_sureness}
-                    else:
-                        suspect_facial_hair_length_sureness = int(input("How sure are you on a scale from 0 to 100? "))
-                        if suspect_facial_hair_length_sureness >= threshold:
-                            map["Beard"] = {"value": suspect_facial_hair_length + " " + suspect_facial_hair_colour + " " + "beard", "sureness": suspect_facial_hair}    
-                        else:
-                            map["Beard"] = {"value": suspect_facial_hair_colour + " " + "beard", "sureness": suspect_facial_hair}    
-                else:
-                    map["Beard"] = {"value": suspect_facial_hair_colour + " " + "beard", "sureness": suspect_facial_hair_sureness}
+
+            # 3a. Type of facial hair
+            facial_hair_word = "facial hair"   # used in the labels if the type is unknown
+            suspect_facial_hair_type = str(input("What type of facial hair? (beard/mustache/stubble/idk): ")).strip().lower()
+            if suspect_facial_hair_type != "idk":
+                facial_hair_type_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+                if facial_hair_type_sureness >= threshold:
+                    facial_hair_word = suspect_facial_hair_type
+                    map["Facial hair"] = {"value": suspect_facial_hair_type, "sureness": facial_hair_type_sureness}
+
+            # 3b. Facial hair colour
+            suspect_facial_hair_colour = str(input("What colour of facial hair does your person have? (black/brown/blonde/red/gray/idk): ")).strip().lower()
+            if suspect_facial_hair_colour != "idk":
+                facial_hair_colour_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+                if facial_hair_colour_sureness >= threshold:
+                    map["Facial hair colour"] = {"value": suspect_facial_hair_colour + " " + facial_hair_word, "sureness": facial_hair_colour_sureness}
+
+            # 3c. Beard length (only for beards)
+            if facial_hair_word == "beard":
+                suspect_beard_length = str(input("How long was the beard? (short/medium/long/idk): ")).strip().lower()
+                if suspect_beard_length != "idk":
+                    beard_length_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+                    if beard_length_sureness >= threshold:
+                        map["Beard length"] = {"value": suspect_beard_length + " beard", "sureness": beard_length_sureness}
+
     elif suspect_facial_hair == "no":
-        suspect_facial_hair_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
-        if suspect_facial_hair_sureness >= threshold:
-            map["Beard"] = {"value": "clean shave", "surenress": suspect_facial_hair_sureness}
-        
+        facial_hair_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+        if facial_hair_sureness >= threshold:
+            map["Facial hair"] = {"value": "clean shave", "sureness": facial_hair_sureness}
 
+    # 4. Skin colour of a suspect
+    suspect_skin_colour = str(input("How is the skin colour of your person?: (light/dark/idk): ")).strip().lower()
+    if suspect_skin_colour != "idk":
+        suspect_skin_colour_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+        if suspect_skin_colour_sureness >= threshold:
+            map["Skin colour"] = {"value": suspect_skin_colour + " " + "skin", "sureness": suspect_skin_colour_sureness}
 
-## skin color of a suspect
-    suspect_skin_colour = str(input("How is the skin colour of your person?: (white/black/tan): ")).strip().lower()
-    suspect_skin_colour_sureness = int(input("How sure are you on a scale from 0 ot 100?: "))
-    if suspect_skin_colour_sureness >= threshold:
-        map["Skin colour"] = {"value": suspect_skin_colour + " " + "skin", "sureness": suspect_skin_colour_sureness}
-
-
-        
-                   
-   
-   
-   
-   
     print("\n--- Provided Details Map ---")
     print(map)
-    return map   #must return too because it is going to be passed to AI tester
-
-
+    return map   # must return too because it is going to be passed to AI tester
