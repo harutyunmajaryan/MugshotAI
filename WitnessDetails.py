@@ -1,3 +1,4 @@
+
 def getInfo():
     print("Fill the suspect's details below:\n")
 
@@ -79,7 +80,22 @@ def getInfo():
                             map["Beard"] = {"value": suspect_facial_hair_colour + " " + "beard", "sureness": suspect_facial_hair}    
                 else:
                     map["Beard"] = {"value": suspect_facial_hair_colour + " " + "beard", "sureness": suspect_facial_hair_sureness}
-   
+    elif suspect_facial_hair == "no":
+        suspect_facial_hair_sureness = int(input("How sure are you on a scale from 0 to 100?: "))
+        if suspect_facial_hair_sureness >= threshold:
+            map["Beard"] = {"value": "clean shave", "surenress": suspect_facial_hair_sureness}
+        
+
+
+## skin color of a suspect
+    suspect_skin_colour = str(input("How is the skin colour of your person?: (white/black/tan): ")).strip().lower()
+    suspect_skin_colour_sureness = int(input("How sure are you on a scale from 0 ot 100?: "))
+    if suspect_skin_colour_sureness >= threshold:
+        map["Skin colour"] = {"value": suspect_skin_colour + " " + "skin", "sureness": suspect_skin_colour_sureness}
+
+
+        
+                   
    
    
    
