@@ -6,7 +6,7 @@ import os
 
 vision_scanner = pipeline(
     task="zero-shot-image-classification", 
-    model="google/siglip-so400m-patch14-384"
+    model="google/siglip-large-patch16-384"
 )
 
 
