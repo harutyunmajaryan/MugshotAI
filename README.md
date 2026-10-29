@@ -18,7 +18,6 @@ Eyewitness descriptions are rarely certain, so each feature is quantified on a c
 
 ## ⚙️ How it works
 
-<img src="assets/pipeline.svg" alt="MugshotAI pipeline from witness statement to candidate matches" width="100%" />
 
 1. **Witness statement:** the eyewitness description, with a confidence percentage for each feature.
 2. **Statement parser:** reads nested data structures (such as dictionary-wrapped sets) and validates their types.
@@ -28,7 +27,6 @@ Eyewitness descriptions are rarely certain, so each feature is quantified on a c
 
 ### Graduated confidence
 
-<img src="assets/confidence-scale.svg" alt="Witness confidence scale from 0 to 100" width="100%" />
 
 ## ✨ Key features
 
