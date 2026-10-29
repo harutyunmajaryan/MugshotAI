@@ -1,6 +1,5 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="MugshotAI banner" width="100%" />
 
 ![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?logo=mysql&logoColor=white)
@@ -86,15 +85,9 @@ def find_matches(criteria, limit=10):
 
 ```bash
 pip install mysql-connector-python
-python main.py
+python3 database_connect.py
 ```
 
-Update the connection details in the script to point at your own MySQL database.
 
-## 🖼️ Demo
-
-<!-- Add your terminal screenshots to a docs/ folder, then uncomment:
-<img src="docs/terminal-output.png" alt="MugshotAI terminal output" width="100%" />
--->
 
 *Screenshots coming soon. All faces shown are AI-generated and do not depict real people.*
