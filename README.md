@@ -90,4 +90,3 @@ python3 database_connect.py
 
 
 
-*Screenshots coming soon. All faces shown are AI-generated and do not depict real people.*
