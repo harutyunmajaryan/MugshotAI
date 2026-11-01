@@ -67,6 +67,18 @@ SKIN_TYPE = [
 ]
 
 
+
+#the function below takes every features of a person and starts scanning them
+def scan_features(image, labels):
+   results = vision_scanner(
+      image,
+      candidate_labels=labels,
+      hypothesis_template="{}"
+)
+   return results
+
+
+
 def AI_scanner(witness_provided_data):
     required_feature_details = []
     for data in witness_provided_data:
@@ -93,11 +105,7 @@ def AI_scanner(witness_provided_data):
                if "Gender" in witness_provided_data:
                   witness_gender = witness_provided_data["Gender"]["value"]
 
-                  results = vision_scanner(
-                     suspect_picture,
-                     candidate_labels=GENDER,
-                     hypothesis_template="{}"
-                  )
+                  results = scan_features(suspect_picture, GENDER)   #model is scanning for gender
 
                   set_of_values_for_gender = {}
                   for feature in results:
@@ -120,11 +128,7 @@ def AI_scanner(witness_provided_data):
                if "Hair color" in witness_provided_data:
                   witness_hair_colour = witness_provided_data["Hair color"]["value"]
 
-                  results = vision_scanner(
-                     suspect_picture,
-                     candidate_labels=HAIR_COLOUR,
-                     hypothesis_template="{}"
-                  )
+                  results = scan_features(suspect_picture, HAIR_COLOUR)  #model is scanning for hair colour
 
                   set_of_values_for_hair_colour = {}
                   for feature in results:
@@ -147,11 +151,7 @@ def AI_scanner(witness_provided_data):
                if "Hair length" in witness_provided_data:
                   witness_hair_length = witness_provided_data["Hair length"]["value"]
 
-                  results = vision_scanner(
-                     suspect_picture,
-                     candidate_labels=HAIR_LENGTH,
-                     hypothesis_template="{}"
-                  )
+                  results = scan_features(suspect_picture, HAIR_LENGTH) #model is scanning for hair length
 
                   set_of_values_for_hair_length = {}
                   for feature in results:
@@ -174,11 +174,7 @@ def AI_scanner(witness_provided_data):
                if "Facial hair" in witness_provided_data:
                   witness_facial_hair_type = witness_provided_data["Facial hair"]["value"]
 
-                  results = vision_scanner(
-                     suspect_picture,
-                     candidate_labels=FACIAL_HAIR_TYPE,
-                     hypothesis_template="{}"
-                  )
+                  results = scan_features(suspect_picture, FACIAL_HAIR_TYPE)   #model is scanning for facial hair
 
                   set_of_values_for_facial_hair_type = {}
                   for feature in results:
@@ -201,11 +197,7 @@ def AI_scanner(witness_provided_data):
                if "Facial hair colour" in witness_provided_data:
                   witness_facial_hair_colour = witness_provided_data["Facial hair colour"]["value"]
 
-                  results = vision_scanner(
-                     suspect_picture,
-                     candidate_labels=FACIAL_HAIR_COLOUR,
-                     hypothesis_template="{}"
-                  )
+                  results = scan_features(suspect_picture, FACIAL_HAIR_COLOUR)  #model is scanning for facial hair colour
 
                   set_of_values_for_facial_hair_colour = {}
                   for feature in results:
@@ -228,11 +220,7 @@ def AI_scanner(witness_provided_data):
                if "Beard length" in witness_provided_data:
                   witness_beard_length = witness_provided_data["Beard length"]["value"]
 
-                  results = vision_scanner(
-                     suspect_picture,
-                     candidate_labels=FACIAL_HAIR_LENGTH,
-                     hypothesis_template="{}"
-                  )
+                  results = scan_features(suspect_picture, FACIAL_HAIR_LENGTH)  #model is scanning for facial hair length
 
                   set_of_values_for_beard_length = {}
                   for feature in results:
@@ -255,11 +243,7 @@ def AI_scanner(witness_provided_data):
                if "Skin colour" in witness_provided_data:
                   witness_skin_colour = witness_provided_data["Skin colour"]["value"]
 
-                  results = vision_scanner(
-                     suspect_picture,
-                     candidate_labels=SKIN_TYPE,
-                     hypothesis_template="{}"
-                  )
+                  results = scan_features(suspect_picture, SKIN_TYPE)   #model is scanning for skin type
 
                   set_of_values_for_skin_colour = {}
                   for feature in results:
@@ -317,8 +301,6 @@ def AI_scanner(witness_provided_data):
             priority_images.append(image_path_for_match)                    #priortiy_images is the array that contains all the image paths which exceeded the threshold
 
     return priority_images
-
-            
 
 
          
