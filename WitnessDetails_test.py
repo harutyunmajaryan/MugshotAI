@@ -30,9 +30,6 @@ def test_valid_scores(valid_score):
     assert "is accepted" in errors_for_invalid_scores(valid_score)
 
 
-# ==============================================================================
-
-
 
 # 2. YES / NO / IDK VALIDATION & TESTS
 
@@ -77,10 +74,8 @@ def test_valid_strings(valid_string):
     assert "is accepted" in errors_for_yes_or_no(valid_string)
 
 
-# ==============================================================================
 
-# 3. HAIR COLOUR VALIDATION & TESTS
-
+# 3. HAIR COLOUR TESTS
 
 HAIR_COLOURS = [
     "black", 
