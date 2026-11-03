@@ -9,7 +9,7 @@ import mysql.connector
 
 
 connection = mysql.connector.connect(
-    host="172.17.128.1", 
+    host="***.**.***.*", 
     user="root",
     password="", 
     port=3308,    
