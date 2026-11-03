@@ -2,6 +2,8 @@ import mysql.connector
 from AI_scanner import AI_scanner
 from WitnessDetails import getInfo
 from PIL import Image
+import asyncio
+from AI_Talking_Agent import speak
 
 
 
@@ -35,6 +37,7 @@ rows = cursor.fetchall()
 print("AI is scanning ...")
 suspect_images_detected = AI_scanner(getInfo())  #this is the array of all images of suspects 
 
+asyncio.run(speak("Hello, I am your AI assistant. I have found suspects that match your description."))
 
 for row in rows:
     if len(row) > 0:
@@ -46,9 +49,9 @@ for row in rows:
           suspect_address = row[4]
           suspect_image_path = row[5]
 
-          for image_path in suspect_images_detected:
-            if image_path == suspect_image_path:
 
+          if suspect_image_path in suspect_images_detected:   #if the image path exsits in the priority images then make a query
+              
               suspect_query = f"""
                  Suspect Name: {suspect_name}
                  Suspect Surname: {suspect_surname}
@@ -56,9 +59,14 @@ for row in rows:
                  Suspect Home Address: {suspect_address}
                  Suspect Image Path: {suspect_image_path}
                  """
-              img = Image.open(image_path)
+              
+              img = Image.open(suspect_image_path)
               img.show()
-            
+
+              message_for_AI = f"Suspect's name is {suspect_name} and surname is {suspect_surname}. {suspect_age} years old, living in {suspect_address}."
+              asyncio.run(speak(message_for_AI))  #start speaking
+              message_for_AI = ""                 #back to normal
+
 
               print(suspect_query)
               print("\n" * 3)
@@ -67,9 +75,10 @@ for row in rows:
            print(f"Error processing row or image: {e}")  
 
 
+
+asyncio.run(speak("Thats all I have Harutyun, thanks for your support and patience."))
 cursor.close()
 connection.close()
 
-#closing cursor and connection after processing everything
 
 
