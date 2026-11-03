@@ -1,14 +1,15 @@
-import mysql.connector
+from AI_Talking_Agent import speak
 from AI_scanner import AI_scanner
 from WitnessDetails import getInfo
 from PIL import Image
 import asyncio
-from AI_Talking_Agent import speak
+import mysql.connector
+
 
 
 
 connection = mysql.connector.connect(
-    host="***.**.***.*", 
+    host="172.17.128.1", 
     user="root",
     password="", 
     port=3308,    
