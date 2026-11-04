@@ -90,6 +90,16 @@ The process will repeat until the last person on database.
 """
 
 
+"""
+WARNING!
+The function below must be optimized and the reason is the major bottleneck for time complexity!
+The AI model scans every single feature for each image which will take veryyyy long time if the size of database increases later.
+The time complexity should be O(n) and if it is possible O(logn) or O(nlogn).
+The current algorithm takes O(n^2) for scanning if I am not mistaken, therefore the funciton has some inefficiency due to its time complexity.
+If someone is going to work on this, please consider the size of your database!
+"""
+
+
 def AI_scanner(witness_provided_data):
     required_feature_details = []
     for data in witness_provided_data:
