@@ -7,6 +7,10 @@ import mysql.connector
 
 
 
+#Connecting to my database which takes the host IP address, username, password which can be ignored by now.
+#the port which is 3308, I used XAMPP for this.
+#And finally the database name which is JJ(check my SQL)
+
 
 connection = mysql.connector.connect(
     host="172.17.128.1", 
