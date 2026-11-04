@@ -79,7 +79,7 @@ def scan_features(image, labels):
 
 
 """
-The function below implements a scanning process for each image in the database by taking the attributes from witness's discription.
+The function below implements scanning process for each image in the database by taking the attributes from witness's discription.
 It will take simple words like long, blonde, light and many other words, and convert into simple sentence form, so the AI model can understand.
 Moreover, the AI model will evaluate the label scores for each feature and try to find the maximum out of them and assign 1 to the feature if the person has that.
 If you see 1 in front of a feature that person has it means it is True, and False if you see 0.
