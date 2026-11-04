@@ -78,6 +78,17 @@ def scan_features(image, labels):
    return results
 
 
+"""
+The function below implements a scanning process for each image in the database by taking the attributes from witness's discription.
+It will take simple words like long, blonde, light and many other words, and convert into simple sentence form, so the AI model can understand.
+Moreover, the AI model will evaluate the label scores for each feature and try to find the maximum out of them and assign 1 to the feature if the person has that.
+If you see 1 in front of a feature that person has it means it is True, and False if you see 0.
+Finally, the function will find the sum of truth values for each person from database and check the passing threhold.
+If the total number of truth values, for example, 1+1+0+0+1 = 3, passes the threshold = 3 it means, the image path will be attached to an array called priority_images
+Otherwise it will skip that person and move on to the next one.
+The process will repeat until the last person on database. 
+"""
+
 
 def AI_scanner(witness_provided_data):
     required_feature_details = []
