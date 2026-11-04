@@ -1,6 +1,15 @@
 import pytest
 
 
+
+"""
+Each attribute or response that I take from witness needs to be check under testing mechanism which are demonstrated below.
+So for string, the input must be in the form of str or just string/text/message/word and so on.
+Furthermore, every single sureness score must be checked as well and raise TypeError or ValueError based on the form of that input.
+Every single sureness score must be a natural number between 0 and 100 and takes no character or word, just a raw natural integer.
+The testing was done by using pytest library to parametrize all possible inputs from witnesses.
+"""
+
 # 1. SCORES VALIDATION & TESTS
 
 def errors_for_invalid_scores(score):
