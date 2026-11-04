@@ -2,6 +2,11 @@ import edge_tts
 import subprocess
 
 
+"""
+The AI agent will process each suspect's profile and summarize the details audibly.
+I developed this solution to streamline my workflow by replacing manual document review with automated text-to-speech presentation.
+"""
+
 async def speak(text):
     print("AI:", text)
 
