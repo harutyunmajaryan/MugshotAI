@@ -6,8 +6,12 @@ def getInfo():
 
     """
     This is the questioniare part, where we take all the data from witnesses. 
+    All questions must be derived from another relevent question. For example, if we take a data about hair every single question that is related to hari must be derived from one to another one.
+    All the TypeError and ValueError cases must be handled properly.
     
     """
+
+    
 
     # 1. Suspect Gender
     suspect_gender = input("Is your person male? (yes/no): ").strip().lower()
