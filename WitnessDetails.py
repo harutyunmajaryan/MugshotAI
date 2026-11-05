@@ -7,8 +7,8 @@ def getInfo():
     """
     This is the questioniare part, where we take all the data from witnesses. 
     All questions must be derived from another relevent question. For example, if we take a data about hair every single question that is related to hari must be derived from one to another one.
-    All the TypeError and ValueError cases must be handled properly.
-    
+    All the TypeError and ValueError cases must be handled properly. 
+    Sureness scores must be between 0 and 100, which means they must be natural integers.
     """
 
     
