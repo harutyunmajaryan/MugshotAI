@@ -4,6 +4,11 @@ def getInfo():
     map = {}
     threshold = 70
 
+    """
+    This is the questioniare part, where we take all the data from witnesses. 
+    
+    """
+
     # 1. Suspect Gender
     suspect_gender = input("Is your person male? (yes/no): ").strip().lower()
     if suspect_gender == "yes":
