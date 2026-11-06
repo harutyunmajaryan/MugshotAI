@@ -4,6 +4,11 @@ def getInfo():
     map = {}
     threshold = 70
 
+    AVAILABLE_COLOURS = ["blonde", "black", "brown", "red", "gray", "white", "ginger", "idk"]
+    AVAILABLE_LENGTHS = ["long", "short", "medium", "idk"]
+    AVAILABLE_FACIAL_HAIR = ["beard", "mustache", "stubble", "idk"]
+    AVAILABLE_SKIN_TONES = ["light", "dark", "medium", "idk"]
+    
     """
     This is the questioniare part, where we take all the data from witnesses. 
     All questions must be derived from another relevent question. For example, if we take a data about hair every single question that is related to hari must be derived from one to another one.
@@ -11,6 +16,7 @@ def getInfo():
     Sureness scores must be between 0 and 100, which means they must be natural integers.
     """
 
+    #The inputs should take while loop so whenever the customer makes mistakes or typos the program will shot down immidietly which is not the best way to handle this issue.!!!!!!!!!!
     
 
     # 1. Suspect Gender
@@ -44,7 +50,7 @@ def getInfo():
 
             # 2a. Hair length
             suspect_hair_length = input("How long is the hair? (short/medium/long/idk): ").strip().lower()
-            if suspect_hair_length not in ("short", "medium", "long", "idk"):
+            if suspect_hair_length not in AVAILABLE_LENGTHS:
                 raise ValueError("Hair length must be short, medium, long, or idk")
                 
             if suspect_hair_length != "idk":
@@ -56,7 +62,7 @@ def getInfo():
 
             # 2b. Hair colour
             suspect_hair_colour = input("What colour is the hair? (black/brown/blonde/red/gray/idk): ").strip().lower()
-            if suspect_hair_colour not in ("black", "brown", "blonde", "red", "gray", "idk"):
+            if suspect_hair_colour not in AVAILABLE_COLOURS:
                 raise ValueError("Hair colour must be black, brown, blonde, red, gray, or idk")
                 
             if suspect_hair_colour != "idk":
@@ -88,7 +94,7 @@ def getInfo():
             # 3a. Type of facial hair
             facial_hair_word = "idk"   # stays "idk" unless the witness is sure of the type
             suspect_facial_hair_type = input("What type of facial hair? (beard/mustache/stubble/idk): ").strip().lower()
-            if suspect_facial_hair_type not in ("beard", "mustache", "stubble", "idk"):
+            if suspect_facial_hair_type not in AVAILABLE_FACIAL_HAIR:
                 raise ValueError("Facial hair type must be beard, mustache, stubble, or idk")
                 
             if suspect_facial_hair_type != "idk":
@@ -108,7 +114,7 @@ def getInfo():
 
                 # 3b. Facial hair colour
                 suspect_facial_hair_colour = input("What colour of facial hair does your person have? (black/brown/blonde/red/gray/idk): ").strip().lower()
-                if suspect_facial_hair_colour not in ("black", "brown", "blonde", "red", "gray", "idk"):
+                if suspect_facial_hair_colour not in AVAILABLE_COLOURS:
                     raise ValueError("Facial hair colour must be black, brown, blonde, red, gray, or idk")
                     
                 if suspect_facial_hair_colour != "idk":
@@ -124,7 +130,7 @@ def getInfo():
                 # 3c. Beard length (only for beards)
                 if facial_hair_word == "beard":
                     suspect_beard_length = input("How long was the beard? (short/medium/long/idk): ").strip().lower()
-                    if suspect_beard_length not in ("short", "medium", "long", "idk"):
+                    if suspect_beard_length not in AVAILABLE_LENGTHS:
                         raise ValueError("Beard length must be short, medium, long, or idk")
                         
                     if suspect_beard_length != "idk":
@@ -143,7 +149,7 @@ def getInfo():
 
     # 4. Skin colour of a suspect
     suspect_skin_colour = input("How is the skin colour of your person?: (light/dark/idk): ").strip().lower()
-    if suspect_skin_colour not in ("light", "dark", "idk"):
+    if suspect_skin_colour not in AVAILABLE_SKIN_TONES:
         raise ValueError("Skin colour must be light, dark, or idk")
         
     if suspect_skin_colour != "idk":
