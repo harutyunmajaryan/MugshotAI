@@ -4,6 +4,7 @@ from WitnessDetails import getInfo
 import os
 
 
+#The model is called SigLIP which is Machine Learning Model that is used for face detection
 vision_scanner = pipeline(
     task="zero-shot-image-classification", 
     model="google/siglip-large-patch16-384"
