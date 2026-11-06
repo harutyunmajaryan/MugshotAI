@@ -4,7 +4,6 @@ from WitnessDetails import getInfo
 import os
 
 
-#The model is called SigLIP which is Machine Learning Model that is used for face detection
 vision_scanner = pipeline(
     task="zero-shot-image-classification", 
     model="google/siglip-large-patch16-384"
@@ -22,6 +21,8 @@ HAIR_COLOUR = [
     "a photo of a person with blonde hair.",
     "a photo of a person with red hair.",
     "a photo of a person with gray hair.",
+    "a photo of a person with white hair",
+    "a photo of a person with ginger hair",
 ]
 
 HAIR_LENGTH = [
@@ -65,6 +66,7 @@ FACIAL_HAIR_LENGTH = [
 SKIN_TYPE = [
     "a photo of a person with light skin.",
     "a photo of a person with dark skin.",
+    "a photo of a person with medium skin"
 ]
 
 
@@ -79,8 +81,9 @@ def scan_features(image, labels):
    return results
 
 
+
 """
-The function below implements scanning process for each image in the database by taking the attributes from witness's discription.
+The function below implements a scanning process for each image in the database by taking the attributes from witness's discription.
 It will take simple words like long, blonde, light and many other words, and convert into simple sentence form, so the AI model can understand.
 Moreover, the AI model will evaluate the label scores for each feature and try to find the maximum out of them and assign 1 to the feature if the person has that.
 If you see 1 in front of a feature that person has it means it is True, and False if you see 0.
@@ -89,17 +92,6 @@ If the total number of truth values, for example, 1+1+0+0+1 = 3, passes the thre
 Otherwise it will skip that person and move on to the next one.
 The process will repeat until the last person on database. 
 """
-
-
-"""
-WARNING!
-The function below must be optimized and the reason is the major bottleneck for time complexity!
-The AI model scans every single feature for each image which will take veryyyy long time if the size of database increases later.
-The time complexity should be O(n) and if it is possible O(logn) or O(nlogn).
-The current algorithm takes O(n^2) for scanning if I am not mistaken, therefore the funciton has some inefficiency due to its time complexity.
-If someone is going to work on this, please consider the size of your database!
-"""
-
 
 def AI_scanner(witness_provided_data):
     required_feature_details = []
@@ -122,7 +114,7 @@ def AI_scanner(witness_provided_data):
                current_set = {}
 
 
-           #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+           ###################################################################################################    
               
                if "Gender" in witness_provided_data:
                   witness_gender = witness_provided_data["Gender"]["value"]
@@ -146,7 +138,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_gender] = 0
 
 
-               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               ############################################################################
                if "Hair color" in witness_provided_data:
                   witness_hair_colour = witness_provided_data["Hair color"]["value"]
 
@@ -169,7 +161,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_hair_colour] = 0
 
 
-              #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              ################################################################################
                if "Hair length" in witness_provided_data:
                   witness_hair_length = witness_provided_data["Hair length"]["value"]
 
@@ -192,7 +184,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_hair_length] = 0
 
 
-               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               ##############################################################################
                if "Facial hair" in witness_provided_data:
                   witness_facial_hair_type = witness_provided_data["Facial hair"]["value"]
 
@@ -215,7 +207,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_facial_hair_type] = 0
 
 
-               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               #########################################################################################
                if "Facial hair colour" in witness_provided_data:
                   witness_facial_hair_colour = witness_provided_data["Facial hair colour"]["value"]
 
@@ -238,7 +230,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_facial_hair_colour] = 0
 
 
-               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+               #######################################################################
                if "Beard length" in witness_provided_data:
                   witness_beard_length = witness_provided_data["Beard length"]["value"]
 
@@ -261,7 +253,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_beard_length] = 0
 
 
-               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               ###############################################################
                if "Skin colour" in witness_provided_data:
                   witness_skin_colour = witness_provided_data["Skin colour"]["value"]
 
@@ -282,7 +274,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_skin_colour] = 1
                   else:
                      current_set[witness_skin_colour] = 0  
-                #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
+                #####################################################################      
                       
                  #array_of_sets = [{feature_name1 : 1, feature_name2 : 0, image_path: "...."}, {.......}]
 
@@ -323,6 +315,5 @@ def AI_scanner(witness_provided_data):
             priority_images.append(image_path_for_match)                    #priortiy_images is the array that contains all the image paths which exceeded the threshold
 
     return priority_images
-
 
          
