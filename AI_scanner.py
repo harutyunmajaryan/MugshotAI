@@ -122,7 +122,7 @@ def AI_scanner(witness_provided_data):
                current_set = {}
 
 
-           ###################################################################################################    
+           #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
               
                if "Gender" in witness_provided_data:
                   witness_gender = witness_provided_data["Gender"]["value"]
@@ -146,7 +146,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_gender] = 0
 
 
-               ############################################################################
+               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                if "Hair color" in witness_provided_data:
                   witness_hair_colour = witness_provided_data["Hair color"]["value"]
 
@@ -169,7 +169,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_hair_colour] = 0
 
 
-              ################################################################################
+              #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                if "Hair length" in witness_provided_data:
                   witness_hair_length = witness_provided_data["Hair length"]["value"]
 
@@ -192,7 +192,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_hair_length] = 0
 
 
-               ##############################################################################
+               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                if "Facial hair" in witness_provided_data:
                   witness_facial_hair_type = witness_provided_data["Facial hair"]["value"]
 
@@ -215,7 +215,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_facial_hair_type] = 0
 
 
-               #########################################################################################
+               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                if "Facial hair colour" in witness_provided_data:
                   witness_facial_hair_colour = witness_provided_data["Facial hair colour"]["value"]
 
@@ -238,7 +238,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_facial_hair_colour] = 0
 
 
-               #######################################################################
+               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
                if "Beard length" in witness_provided_data:
                   witness_beard_length = witness_provided_data["Beard length"]["value"]
 
@@ -261,7 +261,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_beard_length] = 0
 
 
-               ###############################################################
+               #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
                if "Skin colour" in witness_provided_data:
                   witness_skin_colour = witness_provided_data["Skin colour"]["value"]
 
@@ -282,7 +282,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_skin_colour] = 1
                   else:
                      current_set[witness_skin_colour] = 0  
-                #####################################################################      
+                #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   
                       
                  #array_of_sets = [{feature_name1 : 1, feature_name2 : 0, image_path: "...."}, {.......}]
 
