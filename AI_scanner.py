@@ -72,7 +72,7 @@ SKIN_TYPE = [
 
 
 #the function below takes every features of a person and starts scanning them
-def scan_features(image, labels):
+def scan_features(image, labels) -> list[dict[str, Any]]:
    results = vision_scanner(
       image,
       candidate_labels=labels,
