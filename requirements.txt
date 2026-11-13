@@ -2,3 +2,4 @@ pillow
 transformers
 edge_tts
 torch
+mysql-connector-python
