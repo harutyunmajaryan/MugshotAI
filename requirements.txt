@@ -1,2 +1,4 @@
 pillow
 transformers
+edge_tts
+torch
