@@ -5,3 +5,4 @@ torch
 mysql-connector-python
 pytest
 hypothesis
+wc
