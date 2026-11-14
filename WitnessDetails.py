@@ -36,7 +36,7 @@ def getInfo() -> dict[str, str | int]:
             elif gender == "no":
                gender_score = int(input("How sure are you on a scale from 0 to 100?: "))
                if (threshold <= gender_score <= 100):
-                   map["Gender"] = {"value": "a photo of a women", "score": gender_score}
+                   map["Gender"] = {"value": "a photo of a woman", "score": gender_score}
                elif gender_score < 0 or gender_score > 100:
                    raise ValueError("The score cannot be outside the range!")
                elif (0 <= gender_score < threshold):
@@ -47,10 +47,10 @@ def getInfo() -> dict[str, str | int]:
 
 
     def age_reveal() -> dict[str, str | int]:
-        age = int(input("How old coule the person be?: (skip if you dont know): "))
+        age = input("How old coule the person be?: (skip if you dont know): ").strip()
         if age == "skip":
             pass
-        elif (18 <= age <= 29):
+        elif (18 <= int(age) <= 29):
             age_score = int(input("How sure are you on a scale from 0 to 100?: "))
             if (threshold <= age_score <= 100):
                 map["Age"] = {"value": "a photo of a young adult", "score": age_score}
@@ -59,7 +59,7 @@ def getInfo() -> dict[str, str | int]:
             elif (0 <= age_score < threshold):
                 pass
 
-        elif (30 <= age <= 59):
+        elif (30 <= int(age) <= 59):
              age_score = int(input("How sure are you on a scale from 0 to 100?: "))
              if (threshold <= age_score <= 100):
                 map["Age"] = {"value": "a photo of a middle-aged adult", "score": age_score}
@@ -68,7 +68,7 @@ def getInfo() -> dict[str, str | int]:
              elif (0 <= age_score < threshold):
                 pass       
 
-        elif (60 <= age <= 120):
+        elif (60 <= int(age) <= 120):
             age_score = int(input("How sure are you on a scale from 0 to 100?: "))
             if (threshold <= age_score <= 100):
                 map["Age"] = {"value": "a photo of an elderly person", "score": age_score}
@@ -77,7 +77,7 @@ def getInfo() -> dict[str, str | int]:
             elif (0 <= age_score < threshold):
                 pass  
 
-        elif age < 0 or age > 120:
+        elif int(age) < 0 or int(age) > 120:
             raise ValueError("The age does not make sense!")
         
         return map          
@@ -155,7 +155,7 @@ def getInfo() -> dict[str, str | int]:
         if skin_type in AVAILABLE_SKIN_TONES:
             skin_type_score = int(input("How sure are you on a scale from 0 to 100?: "))
             if (threshold <= skin_type_score <= 100):
-                map["Skin colour"] = {"value": f"a photo of a person with a {skin_type} skin tone", "score": skin_type_score}
+                map["Skin colour"] = {"value": f"a photo of a person with {skin_type} skin tone", "score": skin_type_score}
             elif skin_type_score > 100 or skin_type_score < 0:
                 raise ValueError("The score cannot be outside the range!")
             elif (0 <= skin_type_score < threshold): 
@@ -185,3 +185,5 @@ if __name__ == "__main__":
 
    
 
+
+     
