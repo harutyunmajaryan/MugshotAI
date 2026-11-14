@@ -47,7 +47,7 @@ def getInfo() -> dict[str, str | int]:
 
 
     def age_reveal() -> dict[str, str | int]:
-        age = int(input("How old coule the person be?: (skip if you dont know): "))
+        age = int(input("How old could the person be?: (skip if you dont know): "))
         if age == "skip":
             pass
         elif (18 <= age <= 29):
