@@ -85,8 +85,10 @@ def getInfo() -> dict[str, str | int]:
 
 
     def hair_colour_reveal() -> dict[str, str | int]:
-        hair_colour = input("What colour was the hair? (please insert colour): ").strip().lower()
-        if hair_colour in AVAILABLE_COLOURS:
+        hair_colour = input("What colour was the hair? (please insert colour or skip the question): ").strip().lower()
+        if hair_colour == "skip":
+            pass
+        elif hair_colour in AVAILABLE_COLOURS:
             hair_colour_score = int(input("How sure are you on a scale from 0 to 100?: "))
             if (threshold <= hair_colour_score <= 100):
                 map["Hair color"] = {"value": f"a photo of a person with {hair_colour} hair", "score": hair_colour_score} 
@@ -100,7 +102,7 @@ def getInfo() -> dict[str, str | int]:
 
 
     def hair_length_reveal() -> dict[str, str | int]:
-        hair_length = input("How long was the hair? (long/medium/short): ").strip().lower()
+        hair_length = input("How long was the hair? (long/medium/short/bald): ").strip().lower()
         if hair_length in AVAILABLE_LENGTHS:
             hair_length_score = int(input("How sure are you on a scale from 0 to 100?: "))
             if (threshold <= hair_length_score <= 100):
@@ -109,6 +111,15 @@ def getInfo() -> dict[str, str | int]:
                 raise ValueError("The score cannot be outside the range!")
             elif (0 <= hair_length_score < threshold):
                 pass
+        elif hair_length == "bald":
+             hair_length_score = int(input("How sure are you on a scale from 0 to 100?: "))
+             if (threshold <= hair_length_score <= 100):
+                map["Hair length"] = {"value": "a photo of a bald person", "score": hair_length_score}
+             elif hair_length_score > 100 or hair_length_score < 0:
+                raise ValueError("The score cannot be outside the range!")
+             elif (0 <= hair_length_score < threshold):
+                pass
+
         elif hair_length not in AVAILABLE_LENGTHS or hair_length == "":
             raise TypeError("The inserted length do not match!")
         return map
@@ -169,5 +180,9 @@ def getInfo() -> dict[str, str | int]:
     
     return map
 
+
+
 if __name__ == "__main__":
     final_result = getInfo()
+
+   
