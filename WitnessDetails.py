@@ -47,7 +47,7 @@ def getInfo() -> dict[str, str | int]:
 
 
     def age_reveal() -> dict[str, str | int]:
-        age = int(input("How old could the person be?: (skip if you dont know): "))
+        age = int(input("How old coule the person be?: (skip if you dont know): "))
         if age == "skip":
             pass
         elif (18 <= age <= 29):
@@ -83,7 +83,30 @@ def getInfo() -> dict[str, str | int]:
         return map          
 
 
+    def hair_length_reveal() -> dict[str, str | int]:
+        hair_length = input("How long was the hair? (long/medium/short/bald): ").strip().lower()
+        if hair_length in AVAILABLE_LENGTHS:
+            hair_length_score = int(input("How sure are you on a scale from 0 to 100?: "))
+            if (threshold <= hair_length_score <= 100):
+                map["Hair length"] = {"value": f"a photo of a person with {hair_length} hair", "score": hair_length_score}
+            elif hair_length_score > 100 or hair_length_score < 0:
+                raise ValueError("The score cannot be outside the range!")
+            elif (0 <= hair_length_score < threshold):
+                pass
+        elif hair_length == "bald":
+            hair_length_score = int(input("How sure are you on a scale from 0 to 100?: "))
+            if (threshold <= hair_length_score <= 100):
+                map["Hair length"] = {"value": "a photo of a bald person", "score": hair_length_score}
+            elif hair_length_score > 100 or hair_length_score < 0:
+                raise ValueError("The score cannot be outside the range!")
+            elif (0 <= hair_length_score < threshold):
+                pass
+    
+        elif hair_length not in AVAILABLE_LENGTHS or hair_length == "":
+            raise TypeError("The inserted length do not match!")
+        return map
 
+    
     def hair_colour_reveal() -> dict[str, str | int]:
         hair_colour = input("What colour was the hair? (please insert colour or skip the question): ").strip().lower()
         if hair_colour == "skip":
@@ -100,29 +123,6 @@ def getInfo() -> dict[str, str | int]:
             raise TypeError("The inserted colour do not match!")
         return map                 
 
-
-    def hair_length_reveal() -> dict[str, str | int]:
-        hair_length = input("How long was the hair? (long/medium/short/bald): ").strip().lower()
-        if hair_length in AVAILABLE_LENGTHS:
-            hair_length_score = int(input("How sure are you on a scale from 0 to 100?: "))
-            if (threshold <= hair_length_score <= 100):
-                map["Hair length"] = {"value": f"a photo of a person with {hair_length} hair", "score": hair_length_score}
-            elif hair_length_score > 100 or hair_length_score < 0:
-                raise ValueError("The score cannot be outside the range!")
-            elif (0 <= hair_length_score < threshold):
-                pass
-        elif hair_length == "bald":
-             hair_length_score = int(input("How sure are you on a scale from 0 to 100?: "))
-             if (threshold <= hair_length_score <= 100):
-                map["Hair length"] = {"value": "a photo of a bald person", "score": hair_length_score}
-             elif hair_length_score > 100 or hair_length_score < 0:
-                raise ValueError("The score cannot be outside the range!")
-             elif (0 <= hair_length_score < threshold):
-                pass
-
-        elif hair_length not in AVAILABLE_LENGTHS or hair_length == "":
-            raise TypeError("The inserted length do not match!")
-        return map
 
 
     def facial_hair_reveal() -> dict[str, str | int]:
@@ -180,9 +180,8 @@ def getInfo() -> dict[str, str | int]:
     
     return map
 
-
-
 if __name__ == "__main__":
     final_result = getInfo()
 
    
+
