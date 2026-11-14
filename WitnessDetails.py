@@ -167,8 +167,8 @@ def getInfo() -> dict[str, str | int]:
 
     gender_reveal()
     age_reveal()
-    hair_colour_reveal()
     hair_length_reveal()
+    hair_colour_reveal()
     facial_hair_reveal()
     skin_type_reveal()
     
