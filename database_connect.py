@@ -7,10 +7,6 @@ import mysql.connector
 
 
 
-#Connecting to my database which takes the host IP address, username, password which can be ignored by now.
-#the port which is 3308, I used XAMPP for this.
-#And finally the database name which is JJ(check my SQL)
-
 
 connection = mysql.connector.connect(
     host="172.17.128.1", 
@@ -68,13 +64,14 @@ for row in rows:
               img = Image.open(suspect_image_path)
               img.show()
 
+              print(suspect_query)
+              print("\n")
+
               message_for_AI = f"Suspect's name is {suspect_name} and surname is {suspect_surname}. {suspect_age} years old, living in {suspect_address}."
               asyncio.run(speak(message_for_AI))  #start speaking
               message_for_AI = ""                 #back to normal
-
-
-              print(suspect_query)
               print("\n" * 3)
+
 
         except (IndexError, FileNotFoundError) as e:
            print(f"Error processing row or image: {e}")  
@@ -84,6 +81,7 @@ for row in rows:
 asyncio.run(speak("Thats all I have Harutyun, thanks for your support and patience."))
 cursor.close()
 connection.close()
+
 
 
 
