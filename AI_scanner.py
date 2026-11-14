@@ -11,73 +11,58 @@ vision_scanner = pipeline(
 
 
 GENDER = [
-    "a photo of a man.",
-    "a photo of a woman.",
+    "a photo of a man",
+    "a photo of a woman",
+]
+
+AGE = [
+   "a photo of a young adult",
+   "a photo of a middle-aged adult",
+   "a photo of an elderly person",
 ]
 
 HAIR_COLOUR = [
-    "a photo of a person with black hair.",
-    "a photo of a person with brown hair.",
-    "a photo of a person with blonde hair.",
-    "a photo of a person with red hair.",
-    "a photo of a person with gray hair.",
+    "a photo of a person with black hair",
+    "a photo of a person with brown hair",
+    "a photo of a person with blonde hair",
+    "a photo of a person with red hair",
+    "a photo of a person with gray hair",
     "a photo of a person with white hair",
     "a photo of a person with ginger hair",
+    "a photo of a person with red hair",
+    "a photo of a person with blue hair",
+    "a photo of a person with purple hair",
 ]
 
 HAIR_LENGTH = [
-    "a photo of a bald person.",
-    "a photo of a person with short hair.",
-    "a photo of a person with medium hair.",
-    "a photo of a person with long hair.",
+    "a photo of a bald person",
+    "a photo of a person with short hair",
+    "a photo of a person with medium hair",
+    "a photo of a person with long hair",
 ]
 
 FACIAL_HAIR_TYPE = [
-    "a photo of a person with a beard.",
-    "a photo of a person with a mustache.",
-    "a photo of a person with stubble.",
-    "a photo of a person with a clean-shaven face.",
+    "a photo of a person with a beard",
+    "a photo of a person with a mustache",
+    "a photo of a person with a stubble",
+    "a clean-shaven face with no facial hair",
 ]
 
-FACIAL_HAIR_COLOUR = [
-    "a photo of a person with a black beard.",
-    "a photo of a person with a brown beard.",
-    "a photo of a person with a blonde beard.",
-    "a photo of a person with a red beard.",
-    "a photo of a person with a gray beard.",
-    "a photo of a person with a black mustache.",
-    "a photo of a person with a brown mustache.",
-    "a photo of a person with a blonde mustache.",
-    "a photo of a person with a red mustache.",
-    "a photo of a person with a gray mustache.",
-    "a photo of a person with black stubble.",
-    "a photo of a person with brown stubble.",
-    "a photo of a person with blonde stubble.",
-    "a photo of a person with red stubble.",
-    "a photo of a person with gray stubble.",
-]
-
-FACIAL_HAIR_LENGTH = [
-    "a photo of a person with a short beard.",
-    "a photo of a person with a medium beard.",
-    "a photo of a person with a long beard.",
-]
 
 SKIN_TYPE = [
-    "a photo of a person with light skin.",
-    "a photo of a person with dark skin.",
-    "a photo of a person with medium skin"
+    "a photo of a person with light skin tone",
+    "a photo of a person with dark skin tone",
+    "a photo of a person with medium skin tone"
 ]
 
 
 
 MASTER_LABELS = (
   GENDER +
+  AGE +
   HAIR_COLOUR +
   HAIR_LENGTH +
   FACIAL_HAIR_TYPE +
-  FACIAL_HAIR_COLOUR +
-  FACIAL_HAIR_LENGTH +
   SKIN_TYPE
 
 )
@@ -157,6 +142,16 @@ def AI_scanner(witness_provided_data):
                   else:
                      current_set[witness_hair_colour] = 0
 
+              ###############################################################################
+               if "Age" in witness_provided_data:
+                   witness_age = witness_provided_data["Age"]["value"]
+                   best_age = return_best_label(AGE)
+              
+                   if best_age == witness_age:
+                      current_set[witness_age] = 1
+                   else:
+                      current_set[witness_age] = 0       
+
               ################################################################################
                if "Hair length" in witness_provided_data:
                   witness_hair_length = witness_provided_data["Hair length"]["value"]
@@ -178,26 +173,7 @@ def AI_scanner(witness_provided_data):
                      current_set[witness_facial_hair_type] = 0
 
                #########################################################################################
-               if "Facial hair colour" in witness_provided_data:
-                  witness_facial_hair_colour = witness_provided_data["Facial hair colour"]["value"]
-                  best_facial_hair_colour = return_best_label(FACIAL_HAIR_COLOUR)
-
-                  if best_facial_hair_colour == witness_facial_hair_colour:
-                     current_set[witness_facial_hair_colour] = 1
-                  else:
-                     current_set[witness_facial_hair_colour] = 0
-
-               #######################################################################
-               if "Beard length" in witness_provided_data:
-                  witness_beard_length = witness_provided_data["Beard length"]["value"]
-                  best_beard_length = return_best_label(FACIAL_HAIR_LENGTH)
-                  
-                  if best_beard_length == witness_beard_length:
-                     current_set[witness_beard_length] = 1
-                  else:
-                     current_set[witness_beard_length] = 0
-
-               ###############################################################
+            
                if "Skin colour" in witness_provided_data:
                   witness_skin_colour = witness_provided_data["Skin colour"]["value"]
                   best_skin_colour = return_best_label(SKIN_TYPE)
@@ -248,4 +224,4 @@ def AI_scanner(witness_provided_data):
 
     return priority_images
 
-         
+                 
