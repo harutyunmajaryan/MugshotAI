@@ -216,7 +216,7 @@ def AI_scanner(witness_provided_data):
 
 
     priority_images = []
-    return_threshold = 3
+    return_threshold = 4
 
     for image_path_for_match in suspect_vs_matches:
         if suspect_vs_matches[image_path_for_match] >= return_threshold:     #suspect_vs_matches[image_path_for_match] is match_score for each image > threshold
