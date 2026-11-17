@@ -9,6 +9,8 @@ So for string, the input must be in the form of str or just string/text/message/
 Furthermore, every single sureness score must be checked as well and raise TypeError or ValueError based on the form of that input.
 Every single sureness score must be a natural number between 0 and 100 and takes no character or word, just a raw natural integer.
 The testing was done by using pytest library to parametrize all possible inputs from witnesses.
+
+Note: There is no hypthesis applied yet but I am planning to generate many inputs by using given(@........) default function
 """
 
 # 1. SCORES VALIDATION & TESTS
