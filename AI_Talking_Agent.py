@@ -7,7 +7,7 @@ The AI agent will process each suspect's profile and summarize the details audib
 I developed this solution to streamline my workflow by replacing manual document review with automated text-to-speech presentation.
 """
 
-async def speak(text):
+async def speak(text):    #make this asynchronous !!!
     print("AI:", text)
 
     communicate = edge_tts.Communicate(
