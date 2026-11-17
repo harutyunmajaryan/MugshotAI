@@ -7,7 +7,6 @@ import mysql.connector
 
 
 
-
 connection = mysql.connector.connect(
     host="172.17.128.1", 
     user="root",
@@ -60,9 +59,17 @@ for row in rows:
                  Suspect Home Address: {suspect_address}
                  Suspect Image Path: {suspect_image_path}
                  """
-              
-              img = Image.open(suspect_image_path)
-              img.show()
+
+              if (suspect_image_path):
+                try:
+                    img = Image.open(suspect_image_path)
+                    img_resized = img.resize((650, 800), Image.Resampling.LANCZOS)  
+                    img_resized.show()
+
+                except (FileNotFoundError):
+                   print(f"The {suspect_image_path} is not found or does not exist!")
+              else:
+                 raise ValueError(f"The {suspect_image_path} is not found or does not exist!")     
 
               print(suspect_query)
               print("\n")
@@ -81,7 +88,5 @@ for row in rows:
 asyncio.run(speak("Thats all I have Harutyun, thanks for your support and patience."))
 cursor.close()
 connection.close()
-
-
 
 
