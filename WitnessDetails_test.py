@@ -10,7 +10,9 @@ Furthermore, every single sureness score must be checked as well and raise TypeE
 Every single sureness score must be a natural number between 0 and 100 and takes no character or word, just a raw natural integer.
 The testing was done by using pytest library to parametrize all possible inputs from witnesses.
 
-Note: There is no hypthesis applied yet but I am planning to generate many inputs by using given(@........) default function
+Note: There is no hypthesis applied yet but I am planning to generate many inputs by using given(@........) default function.
+The pytest allows to do manual checking only, meanwhile the hypthesis package in python will also generate many inputs by its own.
+You can also check branch or path coverage for witnessdetails.py to make sure that every type of input can be handled by your program.
 """
 
 # 1. SCORES VALIDATION & TESTS
