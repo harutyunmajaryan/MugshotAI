@@ -86,7 +86,8 @@ for row in rows:
 
 
 
-asyncio.run(speak("Thats all I have Harutyun, thanks for your support and patience."))
+#closing part 
+asyncio.run(speak("Thats all I have Harutyun, thanks for your support and patience.")) 
 cursor.close()
 connection.close()
 
