@@ -4,6 +4,7 @@ from WitnessDetails import getInfo
 import os
 
 
+#SigLIP ML model is imported (download the packages from requirements.txt to use this model)
 vision_scanner = pipeline(
     task="zero-shot-image-classification", 
     model="google/siglip-large-patch16-384"
@@ -70,7 +71,6 @@ MASTER_LABELS = (
 
 
 #the function below takes every features of a person and starts scanning them
-
 
 """
 The function below implements a scanning process for each image in the database by taking the attributes from witness's discription.
