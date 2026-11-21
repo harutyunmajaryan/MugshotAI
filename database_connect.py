@@ -7,6 +7,7 @@ import mysql.connector
 
 
 
+#Connecting Python and SQL
 connection = mysql.connector.connect(
     host="172.17.128.1", 
     user="root",
